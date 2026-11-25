@@ -1,0 +1,11 @@
+{
+  "name": "cin-checker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Format checker and decoder for Indian CINs and LLPINs",
+  "scripts": {
+    "test": "node --test tests/",
+    "serve": "python3 -m http.server 4173"
+  }
+}
