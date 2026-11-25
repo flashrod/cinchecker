@@ -279,15 +279,30 @@ $('clear').addEventListener('click', () => {
 
 copyButton.addEventListener('click', async () => {
   const csv = buildCsv(state.results);
+  let copied = false;
+
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       await navigator.clipboard.writeText(csv);
-    } else {
-      fallbackCopy(csv);
+      copied = true;
     }
+  } catch {
+    /* fall through to the legacy path */
+  }
+
+  if (!copied) {
+    try {
+      fallbackCopy(csv);
+      copied = true;
+    } catch {
+      /* both paths failed */
+    }
+  }
+
+  if (copied) {
     flashCopyLabel();
     announce(`Copied ${fmt(state.results.length)} rows as CSV.`);
-  } catch {
+  } else {
     announce('Copy failed. Use Download CSV instead.');
   }
 });

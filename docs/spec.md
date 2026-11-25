@@ -342,8 +342,7 @@ applies to an unknown company type code.
 
 ### Structure
 
-1. Header: product name, one-sentence description, `by FileSure` link to
-   <https://filesure.in>.
+1. Header: product name and one-sentence description.
 2. Checker panel: visible label, large textarea, two example numbers in the
    placeholder, `Check numbers` primary button, `Load sample` and `Clear`
    secondary actions, live line count.
@@ -356,7 +355,7 @@ applies to an unknown company type code.
    640 and 719px.
 6. A CIN anatomy strip, two short context cards, and a collapsible list of
    accepted codes generated from `src/reference.js`.
-7. Footer: MCA verification warning, FileSure link, sources.
+7. Footer: MCA verification warning, sources.
 
 ### States
 

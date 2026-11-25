@@ -436,3 +436,20 @@ test('CSV cells escape quotes and guard spreadsheet formulas', () => {
   assert.ok(row.startsWith('"\'=1+1"'));
   assert.ok(row.includes('"He said ""no"""'));
 });
+
+test('a 21-character CIN attempt with punctuation is still diagnosed', () => {
+  const result = checkLine('L1711-MH197-3PLC-1978', opts);
+  assert.equal(result.kind, 'CIN');
+  assert.equal(result.valid, false);
+  assert.equal(result.errors.length, 4);
+  assert.match(result.errors[0], /industry code/);
+});
+
+test('an LLPIN with a trailing hyphen is treated as an LLPIN attempt', () => {
+  const result = checkLine('AAA-1234-');
+  assert.equal(result.kind, 'LLP');
+  assert.deepEqual(result.errors, [
+    'An LLPIN is 8 characters including the hyphen. This one has 9.',
+    'An LLPIN ends with four digits, like AAA-1234.',
+  ]);
+});

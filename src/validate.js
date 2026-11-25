@@ -90,14 +90,14 @@ export function classify(input) {
   if (
     value.length >= 6 &&
     value.length <= 10 &&
-    /^[A-Z]{2,5}-?[0-9]{2,5}$/.test(value)
+    /^[A-Z]{2,5}-?[0-9]{2,5}-?$/.test(value)
   ) {
     return 'LLP';
   }
 
   if (value.length >= 18 && value.length <= 24) {
-    const punctuation = value.replace(/[A-Z0-9]/g, '').length;
-    if (punctuation <= 2 && /^[A-Z0-9-]+$/.test(value)) return 'CIN';
+    const alphanumeric = value.replace(/[^A-Z0-9]/g, '').length;
+    if (alphanumeric >= value.length - 4) return 'CIN';
   }
 
   return 'UNKNOWN';

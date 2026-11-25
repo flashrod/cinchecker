@@ -267,7 +267,7 @@ textarea {
 }
 
 textarea::placeholder {
-  color: #9a998f;
+  color: #77766e;
   opacity: 1;
 }
 
@@ -1003,7 +1003,7 @@ tbody tr:last-child > td {
   padding: 1px 5px;
   border-radius: 999px;
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 9px;
   font-style: normal;
   letter-spacing: 0.04em;
   text-transform: uppercase;
