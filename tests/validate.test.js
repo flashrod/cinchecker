@@ -228,11 +228,14 @@ test('a year before 1850 is rejected', () => {
 
 test('a wrong-length CIN stops at the length error', () => {
   const short = 'L85110KA1981PLC0131';
-  assert.equal(short.length, 20);
+  assert.equal(short.length, 19);
   assert.deepEqual(checkLine(short, opts).errors, [
-    'A CIN must be exactly 21 characters. This one has 20.',
+    'A CIN must be exactly 21 characters. This one has 19.',
   ]);
   assert.deepEqual(checkLine(short + '5', opts).errors, [
+    'A CIN must be exactly 21 characters. This one has 20.',
+  ]);
+  assert.deepEqual(checkLine(short + '123', opts).errors, [
     'A CIN must be exactly 21 characters. This one has 22.',
   ]);
 });
