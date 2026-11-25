@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CIN Checker — validate Indian company and LLP numbers | FileSure</title>
   <meta name="description" content="Paste Indian company (CIN) and LLP (LLPIN) numbers to check their format, decode the state, year and company type, and see exactly what is wrong. Runs entirely in your browser.">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#FBFBFA" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#121312" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Crect x='1' y='1' width='16' height='16' rx='3.5' fill='%230e4f4f'/%3E%3Cpath d='M5.5 9.2l2.3 2.3 4.7-5' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
     <section class="hero wrap" aria-labelledby="page-title">
       <p class="eyebrow">Company registration numbers · India</p>
       <h1 id="page-title">CIN Checker</h1>
-      <p class="lede">Check Indian company (CIN) and LLP (LLPIN) numbers before you file, share, or search: every field is decoded, and every error is named.</p>
+      <p class="lede">Check Indian CINs and LLPINs before you file, share, or search.</p>
       <p class="byline">by <a href="https://filesure.in">FileSure</a></p>
     </section>
 
@@ -44,13 +44,6 @@
             <h2 id="checker-title">Numbers to check</h2>
             <p class="hint" id="input-hint">One per line. CINs are 21 characters; LLPINs look like AAA-1234.</p>
           </div>
-          <p class="privacy">
-            <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-              <rect x="3" y="7" width="10" height="7" rx="1.6"/>
-              <path d="M5.4 7V5.2a2.6 2.6 0 0 1 5.2 0V7"/>
-            </svg>
-            Runs in your browser
-          </p>
         </div>
 
         <form id="check-form" novalidate>
@@ -58,7 +51,7 @@
           <textarea
             id="numbers"
             name="numbers"
-            rows="7"
+            rows="5"
             spellcheck="false"
             autocomplete="off"
             autocapitalize="characters"
@@ -79,7 +72,6 @@
             <button class="btn btn-primary" type="submit">Check numbers</button>
             <button class="btn btn-secondary" type="button" id="sample">Load sample</button>
             <button class="btn btn-ghost" type="button" id="clear">Clear</button>
-            <p class="kbd-hint"><kbd>Ctrl</kbd><kbd>Enter</kbd> to check</p>
           </div>
         </form>
 
@@ -110,7 +102,7 @@
         </div>
       </div>
 
-      <p class="placeholder" id="results-placeholder">Results appear here after a check. Nothing is sent anywhere.</p>
+      <p class="placeholder" id="results-placeholder">Results appear here after a check.</p>
 
       <p class="notice" id="truncation" role="status" hidden></p>
 
@@ -149,7 +141,7 @@
       <div class="section-head">
         <p class="eyebrow">How to read one</p>
         <h2 id="anatomy-title">Twenty-one characters, six parts</h2>
-        <p class="section-lede">Reliance Industries Limited's CIN, used here as a real example. Read left to right.</p>
+        <p class="section-lede">Reliance Industries Limited's CIN.</p>
       </div>
 
       <div class="anatomy-strip">
@@ -179,24 +171,19 @@
         </div>
       </div>
 
-      <p class="anatomy-note">The two-letter code is a registrar jurisdiction, not always a state abbreviation. Pune companies carry <code>PN</code>; both <code>PN</code> and <code>MH</code> decode to Maharashtra.</p>
+      <p class="anatomy-note">The two-letter code is a registrar jurisdiction: <code>PN</code> (Pune) and <code>MH</code> both mean Maharashtra.</p>
     </section>
 
     <section class="notes wrap" aria-label="Limits and context">
       <article class="note-card">
         <p class="note-kicker">LLPIN</p>
         <h3>Shorter, and quieter</h3>
-        <p>An LLPIN is <code>AAA-1234</code>: three letters, a hyphen, four digits. It carries no state, year, or company type, so those columns stay blank.</p>
-      </article>
-      <article class="note-card">
-        <p class="note-kicker">Limits</p>
-        <h3>2,000 lines per check</h3>
-        <p>Longer lists are cut at 2,000, and the number left out is shown. Nothing is uploaded; the check runs in this tab.</p>
+        <p>An LLPIN is <code>AAA-1234</code>: three letters, a hyphen, four digits. It carries no state, year, or company type.</p>
       </article>
       <article class="note-card note-card-accent">
         <p class="note-kicker">Not a registry</p>
         <h3>Format is not existence</h3>
-        <p>A well-formed number can still be fake or struck off. Confirm the company on <a href="https://www.mca.gov.in">MCA21</a> before relying on it.</p>
+        <p>A well-formed number can still be fake or struck off. Confirm it on <a href="https://www.mca.gov.in">MCA21</a>.</p>
       </article>
     </section>
 
@@ -222,7 +209,7 @@
     <div class="wrap footer-grid">
       <div>
         <p class="footer-brand">CIN Checker</p>
-        <p class="footer-copy">Format validation for Indian company and LLP registration numbers. Not affiliated with the Ministry of Corporate Affairs.</p>
+        <p class="footer-copy">Format validation for Indian company and LLP numbers. Not affiliated with MCA.</p>
       </div>
       <div>
         <p class="footer-head">Verify</p>
@@ -236,7 +223,7 @@
         <ul class="footer-links" id="source-list"></ul>
       </div>
     </div>
-    <p class="wrap fine footer-fine">No analytics, no cookies, no uploads. The only network request after load is the display font.</p>
+    <p class="wrap fine footer-fine">Runs in your browser. No analytics, no cookies, no uploads.</p>
   </footer>
 
   <p class="sr-only" id="live" role="status" aria-live="polite"></p>

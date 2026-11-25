@@ -351,9 +351,11 @@ applies to an unknown company type code.
    `All` / `Valid` / `Invalid`, `Copy as CSV`, `Download CSV`.
 4. Desktop table columns: Number, Status, Type, Listed, State, Year,
    Company type. Invalid rows show their errors inline, directly under the row.
-5. Below 640px: cards instead of a table. No horizontal scrolling.
-6. A CIN anatomy strip, a short "what this cannot tell you" section, and a
-   collapsible list of accepted codes generated from `src/reference.js`.
+5. Below 720px: cards instead of a table. No horizontal scrolling. This
+   covers the required 640px mobile case and avoids a cramped table between
+   640 and 719px.
+6. A CIN anatomy strip, two short context cards, and a collapsible list of
+   accepted codes generated from `src/reference.js`.
 7. Footer: MCA verification warning, FileSure link, sources.
 
 ### States
@@ -385,8 +387,8 @@ Premium utilitarian minimalism: warm off-white paper, off-black ink, one deep
 teal accent, muted pastel status washes, editorial serif headings, system sans
 body, monospace numbers. Flat surfaces, 1px borders, 8–12px radii, no
 gradients, no heavy shadows, no emoji. Visible focus rings, WCAG AA contrast,
-44px minimum touch targets on mobile. Dark mode follows
-`prefers-color-scheme`.
+44px minimum touch targets on mobile. Light palette only, as requested; the
+page declares `color-scheme: light` so native controls match.
 
 Trade-off: a serif display face and generous whitespace make a legal-format
 tool feel considered rather than bureaucratic, at the cost of some vertical

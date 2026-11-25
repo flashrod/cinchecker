@@ -162,6 +162,10 @@ function runCheck() {
   const parsed = parseInput(textarea.value);
 
   if (parsed.total === 0) {
+    state.results = [];
+    state.checked = false;
+    state.filter = 'all';
+    hideResults();
     showNotice('Paste at least one CIN or LLPIN to check.');
     announce('Nothing to check. Paste at least one number.');
     textarea.focus();

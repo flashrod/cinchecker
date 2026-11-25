@@ -10,6 +10,7 @@ import {
   validateLLPIN,
 } from '../src/validate.js';
 import { OWNERSHIP_CODES, STATES } from '../src/reference.js';
+import { buildCsv } from '../src/render.js';
 
 const NOW = new Date('2026-11-25T00:00:00Z');
 const opts = { now: NOW };
@@ -390,4 +391,48 @@ test('validateCIN can be called directly and preserves the raw input', () => {
   assert.equal(result.raw, 'l17110mh1973plc019786');
   assert.equal(result.value, RELIANCE);
   assert.equal(result.valid, true);
+});
+
+test('CSV export has a header, one row per number, and decoded values', () => {
+  const csv = buildCsv([
+    checkLine(RELIANCE, opts),
+    checkLine('AAA-1234'),
+    checkLine('U27100CG2010PTC021930', opts),
+  ]);
+  const lines = csv.split('\r\n');
+  assert.equal(lines.length, 4);
+  assert.equal(
+    lines[0],
+    '"Number","Status","Type","Listed","State","Year","Company type","Errors"',
+  );
+  assert.equal(
+    lines[1],
+    '"L17110MH1973PLC019786","Valid","CIN","Yes","Maharashtra (MH)","1973","Public limited company",""',
+  );
+  assert.equal(
+    lines[3],
+    '"U27100CG2010PTC021930","Invalid","CIN","No","CG — unknown","2010","Private limited company","The state code CG is not a valid Indian state or UT. Chhattisgarh CINs use CT."',
+  );
+});
+
+test('CSV cells escape quotes and guard spreadsheet formulas', () => {
+  const csv = buildCsv([
+    {
+      value: '=1+1',
+      valid: false,
+      kind: 'UNKNOWN',
+      errors: ['He said "no"'],
+      listed: null,
+      stateCode: null,
+      stateName: null,
+      year: null,
+      companyTypeCode: null,
+      companyTypeName: null,
+      industryCode: null,
+      registrationNumber: null,
+    },
+  ]);
+  const row = csv.split('\r\n')[1];
+  assert.ok(row.startsWith('"\'=1+1"'));
+  assert.ok(row.includes('"He said ""no"""'));
 });

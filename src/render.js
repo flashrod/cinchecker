@@ -210,13 +210,14 @@ export function summaryFragment(results) {
   const invalid = results.length - valid;
 
   const fragment = document.createDocumentFragment();
-  const strong = (value) => el('strong', null, String(value));
+  const strong = (value) => el('strong', null, value.toLocaleString('en-IN'));
   const separator = () => el('span', 'sep', '·');
 
-  fragment.append(strong(valid), text(' valid'), separator());
+  fragment.append(strong(valid), text(' valid '), separator(), text(' '));
   fragment.append(strong(invalid), text(' invalid'));
   if (llps > 0) {
-    fragment.append(separator(), strong(llps), text(llps === 1 ? ' LLP' : ' LLPs'));
+    fragment.append(text(' '), separator(), text(' '), strong(llps));
+    fragment.append(text(llps === 1 ? ' LLP' : ' LLPs'));
   }
   return fragment;
 }
@@ -262,7 +263,7 @@ export function buildCsv(results) {
 }
 
 function tag(status) {
-  const label = status === 'observed' ? 'observed' : 'unverified';
+  const label = status === 'observed' ? 'observed' : status === 'legacy' ? 'legacy' : 'unverified';
   return el('em', `tag tag-${status}`, label);
 }
 
@@ -271,8 +272,10 @@ export function renderReference({ stateList, typeList, sourceList, reviewed }) {
   for (const [code, info] of Object.entries(STATES)) {
     const item = el('li');
     item.title = info.note || info.name;
-    item.append(el('code', null, code), el('span', 'code-name', info.name));
-    if (info.status !== 'verified') item.append(tag(info.status));
+    const name = el('span', 'code-name', info.name);
+    if (info.status !== 'verified') name.append(tag(info.status));
+    if (info.legacy) name.append(tag('legacy'));
+    item.append(el('code', null, code), name);
     states.append(item);
   }
   stateList.replaceChildren(states);
@@ -281,8 +284,9 @@ export function renderReference({ stateList, typeList, sourceList, reviewed }) {
   for (const [code, info] of Object.entries(OWNERSHIP_CODES)) {
     const item = el('li');
     item.title = info.note || info.name;
-    item.append(el('code', null, code), el('span', 'code-name', info.name));
-    if (info.status !== 'verified') item.append(tag(info.status));
+    const name = el('span', 'code-name', info.name);
+    if (info.status !== 'verified') name.append(tag(info.status));
+    item.append(el('code', null, code), name);
     types.append(item);
   }
   typeList.replaceChildren(types);
