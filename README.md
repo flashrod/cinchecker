@@ -2,7 +2,7 @@
 
 A production-quality static tool that validates Indian CINs (Company Identification Numbers) and LLPINs (Limited Liability Partnership Identification Numbers), decodes every field, and reports exact errors in plain English. Runs entirely in your browser — nothing is uploaded.
 
-**Live:** [https://cinchecker.vercel.app](https://cinchecker.vercel.app) *(deploy URL placeholder)*
+**Live:** [https://flashrod.github.io/cinchecker/](https://flashrod.github.io/cinchecker/)
 
 ---
 
@@ -78,30 +78,17 @@ MCA has not published a formal public CIN specification; this tool is built from
 
 ---
 
-## Deploy on Vercel
+## Deploy on GitHub Pages
 
+This is a static site (`index.html`, `styles.css`, `src/`) — no build step. It's deployed from the `main` branch via GitHub Pages.
+
+Live: https://flashrod.github.io/cinchecker/
+
+To redeploy after a change:
 ```bash
-# Install Vercel CLI (if you don't have it)
-npm i -g vercel
-
-# Deploy from the project root
-vercel
-
-# Follow the prompts:
-# - Set up and deploy? Y
-# - Which scope? your-account
-# - Link to existing project? N
-# - Project name: cinchecker
-# - Directory: ./
-# - Override settings? N
-
-# Production deploy
-vercel --prod
+git push origin main
 ```
-
-Or connect the GitHub repo [`flashrod/cinchecker`](https://github.com/flashrod/cinchecker) in the Vercel dashboard for automatic deploys on push.
-
-**Deploy URL placeholder:** `https://cinchecker.vercel.app` — confirm once deployed.
+GitHub Pages rebuilds automatically from `main`.
 
 ---
 
